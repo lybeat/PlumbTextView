@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PlumbTextView.iml" filepath="$PROJECT_DIR$/PlumbTextView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plumb-textview/plumb-textview.iml" filepath="$PROJECT_DIR$/plumb-textview/plumb-textview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+    </modules>
+  </component>
+</project>

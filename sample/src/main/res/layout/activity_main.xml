@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/normal_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="默認效果"/>
+
+    <Button
+        android:id="@+id/padding_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="設置列距和字距"/>
+
+    <Button
+        android:id="@+id/format_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="按標點符號分割"/>
+
+    <Button
+        android:id="@+id/left_light_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="左邊帶有劃綫"/>
+
+    <Button
+        android:id="@+id/font_style_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="設置字體風格"/>
+
+    <Button
+        android:id="@+id/family_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="設置其他字體"/>
+</LinearLayout>

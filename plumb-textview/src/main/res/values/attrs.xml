@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PlumbTextView">
+        <attr name="text" format="string|reference" />
+        <attr name="textColor" format="color|reference" />
+        <attr name="textSize" format="dimension|reference" />
+        <attr name="letterSpacing" format="dimension|reference" />
+        <attr name="columnSpacing" format="dimension|reference" />
+        <attr name="regex" format="string|reference" />
+        <attr name="textStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="leftLine" format="boolean" />
+        <attr name="leftLinePadding" format="dimension|reference" />
+        <attr name="leftLineColor" format="color|reference" />
+    </declare-styleable>
+
+</resources>
