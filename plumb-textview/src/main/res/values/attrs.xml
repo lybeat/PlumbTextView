@@ -8,6 +8,10 @@
         <attr name="letterSpacing" format="dimension|reference" />
         <attr name="columnSpacing" format="dimension|reference" />
         <attr name="regex" format="string|reference" />
+        <attr name="arrangeDirection">
+            <flag name="leftToRight" value="0" />
+            <flag name="rightToLeft" value="1" />
+        </attr>
         <attr name="textStyle">
             <flag name="normal" value="0" />
             <flag name="bold" value="1" />

@@ -39,6 +39,9 @@ public class PlumbTextView extends View {
     private int leftLineColor;
     private String regex;
     private int textStyle;
+    private int arrangeDirection;
+    private boolean isLeftToRight = true;
+
     private List<String> formatTexts = new ArrayList<>();
 
     public PlumbTextView(Context context) {
@@ -79,6 +82,9 @@ public class PlumbTextView extends View {
             } else if (attr == R.styleable.PlumbTextView_textStyle) {
                 textStyle = a.getInt(attr, textStyle);
 
+            } else if (attr == R.styleable.PlumbTextView_arrangeDirection) {
+                arrangeDirection = a.getInt(attr, textStyle);
+                isLeftToRight = arrangeDirection == 0;
             } else if (attr == R.styleable.PlumbTextView_leftLine) {
                 leftLine = a.getBoolean(attr, false);
 
@@ -164,10 +170,11 @@ public class PlumbTextView extends View {
             if (!TextUtils.isEmpty(regex)) {
                 width = columnWidth * formatTexts.size();
             } else {
-                width = columnWidth * (getDesiredHeight(text.toString())
-                        / (height - getPaddingTop() - getPaddingBottom()) + 1);
+                int desiredH = getDesiredHeight(text.toString());
+                int measureH = height - getPaddingTop() - getPaddingBottom();
+                width = columnWidth * (desiredH / measureH + (desiredH % measureH > 0 ? 1 : 0));
             }
-            if (width > widthSize) {
+            if (width > widthSize && widthSize > 0) {
                 width = widthSize;
             }
         }
@@ -203,15 +210,29 @@ public class PlumbTextView extends View {
     protected void onDraw(Canvas canvas) {
         float x = width - getPaddingLeft() - getPaddingRight();
         float y = getPaddingTop();
-        for (int i = 0; i < formatTexts.size(); i++) {
-            x = i == 0 ? width - columnWidth + columnSpacing : x - columnWidth;
-            for (int j = 0; j < formatTexts.get(i).length(); j++) {
-                y = j == 0 ? charHeight - letterSpacing + getPaddingTop() : y + charHeight;
-                canvas.drawText(formatTexts.get(i), j, j + 1, x, y, textPaint);
+        if (isLeftToRight) {
+            for (int i = 0; i < formatTexts.size(); i++) {
+                x = i == 0 ? columnSpacing : x + columnWidth;
+                for (int j = 0; j < formatTexts.get(i).length(); j++) {
+                    y = j == 0 ? charHeight - letterSpacing + getPaddingTop() : y + charHeight;
+                    canvas.drawText(formatTexts.get(i), j, j + 1, x, y, textPaint);
+                }
+                if (leftLine) {
+                    canvas.drawLine(x - leftLinePadding, getPaddingTop(),
+                            x - leftLinePadding, y + letterSpacing, leftLinePaint);
+                }
             }
-            if (leftLine) {
-                canvas.drawLine(x - leftLinePadding, getPaddingTop(),
-                        x - leftLinePadding, y + letterSpacing, leftLinePaint);
+        } else {
+            for (int i = 0; i < formatTexts.size(); i++) {
+                x = i == 0 ? width - columnWidth + columnSpacing : x - columnWidth;
+                for (int j = 0; j < formatTexts.get(i).length(); j++) {
+                    y = j == 0 ? charHeight - letterSpacing + getPaddingTop() : y + charHeight;
+                    canvas.drawText(formatTexts.get(i), j, j + 1, x, y, textPaint);
+                }
+                if (leftLine) {
+                    canvas.drawLine(x - leftLinePadding, getPaddingTop(),
+                            x - leftLinePadding, y + letterSpacing, leftLinePaint);
+                }
             }
         }
     }
